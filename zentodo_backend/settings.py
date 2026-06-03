@@ -120,14 +120,19 @@ DATABASES = {
     }
 }
 
-DATABASE_URL = os.environ.get("DATABASE_URL") or os.environ.get("POSTGRES_URL")
+DATABASE_URL = (
+    os.environ.get("DATABASE_URL")
+    or os.environ.get("POSTGRES_URL")
+    or os.environ.get("MYSQL_URL")
+)
 if DATABASE_URL:
     import dj_database_url
 
+    is_sqlite = DATABASE_URL.startswith("sqlite")
     DATABASES["default"] = dj_database_url.parse(
         DATABASE_URL,
         conn_max_age=600,
-        ssl_require=True,
+        ssl_require=not is_sqlite,
     )
 
 # Password validation

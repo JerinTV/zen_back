@@ -13,7 +13,8 @@ Zentodo backend application.
    - `CSRF_TRUSTED_ORIGINS`: `https://*.vercel.app,https://todo-blond-psi.vercel.app,https://todo-jerintvs-projects.vercel.app,https://todo-jerintv-jerintvs-projects.vercel.app,https://your-domain.com`.
    - `CORS_ALLOWED_ORIGINS`: `https://todo-blond-psi.vercel.app,https://todo-jerintvs-projects.vercel.app,https://todo-jerintv-jerintvs-projects.vercel.app,http://localhost:3000,http://127.0.0.1:3000`.
    - `SIMPLE_JWT_SIGNING_KEY`: a long random JWT signing secret, or omit it to reuse `SECRET_KEY`.
-   - `DATABASE_URL`: your production Postgres connection string. This is required on Vercel; SQLite cannot be used for production writes there.
+   - `DATABASE_URL`: your production database connection string. This is required on Vercel; SQLite cannot be used for production writes there. For MySQL, use a URL like `mysql://USER:PASSWORD@HOST:3306/DATABASE`.
+   - `MYSQL_URL`: optional alternative to `DATABASE_URL` for a MySQL connection string.
 4. Deploy.
 5. Run migrations against the production database from your local machine:
 
