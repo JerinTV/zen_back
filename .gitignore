@@ -14,3 +14,4 @@ yolov8n.pt
 # Editor settings
 .vscode/
 *.code-workspace
+.vercel
