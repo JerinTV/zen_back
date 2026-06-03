@@ -1,0 +1,2 @@
+[tool.vercel]
+entrypoint = "zentodo_backend.asgi:application"
