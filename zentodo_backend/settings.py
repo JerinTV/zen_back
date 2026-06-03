@@ -37,8 +37,30 @@ ALLOWED_HOSTS = env_list(
 
 CSRF_TRUSTED_ORIGINS = env_list(
     "CSRF_TRUSTED_ORIGINS",
-    default=["https://*.vercel.app"],
+    default=[
+        "https://*.vercel.app",
+        "https://todo-6y48iydln-jerintvs-projects.vercel.app",
+        "https://todo-ostnr7iit-jerintvs-projects.vercel.app",
+        "https://todo-blond-psi.vercel.app",
+        "https://todo-jerintvs-projects.vercel.app",
+        "https://todo-jerintv-jerintvs-projects.vercel.app",
+    ],
 )
+
+CORS_ALLOWED_ORIGINS = env_list(
+    "CORS_ALLOWED_ORIGINS",
+    default=[
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "https://todo-6y48iydln-jerintvs-projects.vercel.app",
+        "https://todo-ostnr7iit-jerintvs-projects.vercel.app",
+        "https://todo-blond-psi.vercel.app",
+        "https://todo-jerintvs-projects.vercel.app",
+        "https://todo-jerintv-jerintvs-projects.vercel.app",
+    ],
+)
+
+CORS_ALLOW_ALL_ORIGINS = env_bool("CORS_ALLOW_ALL_ORIGINS", default=False)
 
 # Ensure 'rest_framework' and 'corsheaders' and 'tasks' are in INSTALLED_APPS
 INSTALLED_APPS = [
@@ -137,9 +159,6 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# CORS Configuration - IMPORTANT for frontend communication
-CORS_ALLOW_ALL_ORIGINS = True
-
 # Django REST Framework settings for JWT authentication
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -162,10 +181,7 @@ SIMPLE_JWT = {
     "UPDATE_LAST_LOGIN": False,
 
     "ALGORITHM": "HS256",
-    # !!! IMPORTANT: CHANGE THIS IN PRODUCTION !!!
-    # Use a strong, random key, preferably loaded from an environment variable.
-    # For development, a simple string is okay.
-    "SIGNING_KEY": "jerin",
+    "SIGNING_KEY": os.environ.get("SIMPLE_JWT_SIGNING_KEY", SECRET_KEY),
     "VERIFYING_KEY": "",
     "AUDIENCE": None,
     "ISSUER": None,
