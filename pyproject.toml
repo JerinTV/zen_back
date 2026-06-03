@@ -20,3 +20,7 @@ dependencies = [
     "asgiref==3.8.1",
     "tzdata==2025.2",
 ]
+
+[tool.setuptools.packages.find]
+include = ["zentodo_backend*", "tasks*", "users*"]
+exclude = ["api*", "frma*"]
