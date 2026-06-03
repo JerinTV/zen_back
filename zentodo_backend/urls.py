@@ -1,5 +1,6 @@
 # zentodo_backend/zentodo_backend/urls.py
 
+from django.conf import settings
 from django.contrib import admin
 from django.http import HttpResponse, JsonResponse
 from django.urls import path, include
@@ -25,6 +26,7 @@ def root_view(_request):
         {
             "status": "ok",
             "service": "zentodo_backend",
+            "database_configured": bool(settings.DATABASE_URL),
             "endpoints": {
                 "api_root": "/api/",
                 "admin": "/admin/",
