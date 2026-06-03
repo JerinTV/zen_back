@@ -174,7 +174,8 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny', # <--- THIS LINE IS CHANGED TO AllowAny
-    )
+    ),
+    'EXCEPTION_HANDLER': 'zentodo_backend.exceptions.api_exception_handler',
 }
 
 # Simple JWT specific settings
